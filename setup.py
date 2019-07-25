@@ -15,7 +15,7 @@ long_description = '\n\n'.join([
 setup(
     name='collective.easyformplugin.createdx',
     version='1.0a1',
-    description="Create dexterity objects from easyform submission",
+    description="Create dexterity objects from easyform submissions",
     long_description=long_description,
     # Get more from https://pypi.org/classifiers/
     classifiers=[
@@ -54,6 +54,8 @@ setup(
         'plone.api>=1.8.4',
         'plone.restapi',
         'plone.app.dexterity',
+        'plone.api',
+        'collective.easyform',
     ],
     extras_require={
         'test': [

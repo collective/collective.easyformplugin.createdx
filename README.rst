@@ -6,7 +6,7 @@
 collective.easyformplugin.createdx
 ==================================
 
-Tell me what your product does
+Create dexterity objects from easyform submissions
 
 Features
 --------
