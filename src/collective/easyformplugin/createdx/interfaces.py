@@ -10,15 +10,10 @@ from plone.autoform import directives
 from plone.app.textfield import RichText
 from collective.easyform.interfaces import IAction
 from collective.easyform import config
-from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 from collective.easyform.actions import IAction
 from collective.easyform import vocabularies
 from collective.easyformplugin.createdx import _
 from plone import schema
-
-
-class ICollectiveEasyformpluginCreatedxLayer(IDefaultBrowserLayer):
-    """Marker interface that defines a browser layer."""
 
 
 class ICreateDX(IAction):

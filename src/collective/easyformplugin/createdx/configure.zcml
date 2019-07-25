@@ -13,8 +13,6 @@
   -->
   <!--<includeDependencies package="." />-->
 
-  <include package=".browser" />
-
   <include file="actions.zcml" />
   <include file="permissions.zcml" />
 

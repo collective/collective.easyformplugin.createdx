@@ -31,15 +31,6 @@ class TestSetup(unittest.TestCase):
         self.assertTrue(self.installer.isProductInstalled(
             'collective.easyformplugin.createdx'))
 
-    def test_browserlayer(self):
-        """Test that ICollectiveEasyformpluginCreatedxLayer is registered."""
-        from collective.easyformplugin.createdx.interfaces import (
-            ICollectiveEasyformpluginCreatedxLayer)
-        from plone.browserlayer import utils
-        self.assertIn(
-            ICollectiveEasyformpluginCreatedxLayer,
-            utils.registered_layers())
-
 
 class TestUninstall(unittest.TestCase):
 
@@ -60,12 +51,3 @@ class TestUninstall(unittest.TestCase):
         """Test if collective.easyformplugin.createdx is cleanly uninstalled."""
         self.assertFalse(self.installer.isProductInstalled(
             'collective.easyformplugin.createdx'))
-
-    def test_browserlayer_removed(self):
-        """Test that ICollectiveEasyformpluginCreatedxLayer is removed."""
-        from collective.easyformplugin.createdx.interfaces import \
-            ICollectiveEasyformpluginCreatedxLayer
-        from plone.browserlayer import utils
-        self.assertNotIn(
-            ICollectiveEasyformpluginCreatedxLayer,
-            utils.registered_layers())
