@@ -1,10 +1,11 @@
+# -*- coding: utf-8 -*-
 from collective.easyform.actions import Action
 from collective.easyform.actions import ActionFactory
 from collective.easyform.api import get_context
-from collective.easyformplugin.createdx.interfaces import ICreateDX
-from zope.interface import implementer
-from plone.supermodel.exportimport import BaseHandler
 from collective.easyformplugin.createdx import _
+from collective.easyformplugin.createdx.interfaces import ICreateDX
+from plone.supermodel.exportimport import BaseHandler
+from zope.interface import implementer
 
 
 @implementer(ICreateDX)
