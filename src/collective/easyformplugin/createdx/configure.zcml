@@ -13,6 +13,8 @@
   -->
   <!--<includeDependencies package="." />-->
 
+  <include package="collective.easyform" />
+
   <include file="actions.zcml" />
   <include file="permissions.zcml" />
 
