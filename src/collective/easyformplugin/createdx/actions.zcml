@@ -3,11 +3,11 @@
     i18n_domain="collective.easyformplugin.createdx">
 
     <utility
-        name="collective.easyform.actions.CreateDX"
+        name="collective.easyformplugin.createdx.actions.CreateDX"
         component=".actions.CreateDXAction"
         />
     <utility
-        name="collective.easyform.actions.CreateDX"
+        name="collective.easyformplugin.createdx.actions.CreateDX"
         component=".actions.CreateDXHandler"
         />
 
