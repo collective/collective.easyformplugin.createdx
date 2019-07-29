@@ -23,7 +23,6 @@ import pytz
 def datetime_handler(value):
     """Add localized timezone to be able to use value as event start
     """
-    import pdb; pdb.set_trace()
     portal_timezone = api.portal.get_registry_record('plone.portal_timezone')
     tz = pytz.timezone(portal_timezone)
     # value = ... convert here
