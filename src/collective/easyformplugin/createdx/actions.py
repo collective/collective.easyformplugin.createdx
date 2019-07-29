@@ -30,7 +30,7 @@ def add_timezone_converter(value):
 
 
 CONVERT_MAP = {
-    'plaintext to_intellitext': intellitext_converter,
+    'plaintext_to_intellitext': intellitext_converter,
     'datetime_with_timezone': add_timezone_converter,
 }
 

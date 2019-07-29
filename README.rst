@@ -21,8 +21,17 @@ Documentation
 - Install the addon within your Plone site
 - From the actions menu choose edit actions and add a new action "Create dexterity content"
 - Choose a location where the items should be create
-- Choose the desired content_type
-- Map your form field ids to the item field ids and add the converter configuration if needed
+- Choose the desired content type
+- Map your form field ids to the item field ids and add converters as needed
+
+
+Available converters
+-------------
+
+- 'plaintext_to_intellitext': converts plain text to html,
+- 'datetime_with_timezone': adds portal default timezone to datetime,
+
+
 
 Mapping example
 ---------------
