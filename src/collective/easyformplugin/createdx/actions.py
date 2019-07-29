@@ -8,6 +8,7 @@ from plone import api
 from plone.supermodel.exportimport import BaseHandler
 from zope.interface import implementer
 
+import pytz
 
 # def richtext_handler(value):
 #     value = ... convert here
@@ -19,22 +20,27 @@ from zope.interface import implementer
 #     return value
 
 
-# def datetime_handler(value):
-#     value = ... convert here
-#     return value
+def datetime_handler(value):
+    """Add localized timezone to be able to use value as event start
+    """
+    import pdb; pdb.set_trace()
+    portal_timezone = api.portal.get_registry_record('plone.portal_timezone')
+    tz = pytz.timezone(portal_timezone)
+    # value = ... convert here
+    return tz.localize(value)
 
 
 CONVERT_MAP = {
 #     'richtext': richtext_handler,
 #     'textline': textline_handler,
-#     'datetime': datetime_handler,
+    'datetime': datetime_handler,
 }
 
 
 
 @implementer(ICreateDX)
 class CreateDX(Action):
-    """Create a Dexterity Item"""
+    """Create Dexterity Item Action"""
 
     def __init__(self, **kw):
         for i, f in ICreateDX.namesAndDescriptions():
