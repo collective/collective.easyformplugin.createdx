@@ -10,29 +10,28 @@ from zope.interface import implementer
 
 import pytz
 
-# def richtext_handler(value):
-#     value = ... convert here
-#     return value
+
+def intellitext_converter(value):
+    """convert plain text to html
+    """
+    portal_transforms = api.portal.get_tool(name='portal_transforms')
+    stream = portal_transforms.convertTo(
+        'text/html', value, mimetype='text/x-web-intelligent'
+    )
+    return stream.getData().strip()
 
 
-# def textline_handler(value):
-#     value = ... convert here
-#     return value
-
-
-def datetime_handler(value):
+def add_timezone_converter(value):
     """Add localized timezone to be able to use value as event start
     """
     portal_timezone = api.portal.get_registry_record('plone.portal_timezone')
     tz = pytz.timezone(portal_timezone)
-    # value = ... convert here
     return tz.localize(value)
 
 
 CONVERT_MAP = {
-    #     'richtext': richtext_handler,
-    #     'textline': textline_handler,
-    'datetime': datetime_handler,
+    'plaintext to_intellitext': intellitext_converter,
+    'datetime_with_timezone': add_timezone_converter,
 }
 
 
