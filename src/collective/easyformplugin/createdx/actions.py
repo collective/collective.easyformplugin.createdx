@@ -55,7 +55,7 @@ class CreateDX(Action):
 
 
     def createDXItem(self, fields, request, context):
-        """
+        """Create dexterity item and call converters as necessary
         """
         mappings = {}
         for m in self.mappings:
@@ -68,8 +68,6 @@ class CreateDX(Action):
                 fields[src_field],
             )
 
-
-
         api.content.create(
             container=api.content.get(path='/foam/entries'),
             type=self.content_type,
@@ -80,8 +78,7 @@ class CreateDX(Action):
 
 
     def onSuccess(self, fields, request):
-        """
-        e-mails data.
+        """Create item on successful form submission
         """
         context = get_context(self)
         self.createDXItem(fields, request, context)
