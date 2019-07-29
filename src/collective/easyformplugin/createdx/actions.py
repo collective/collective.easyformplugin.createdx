@@ -65,10 +65,10 @@ class CreateDX(Action):
             )
 
         api.content.create(
-            container=api.content.get(path='/foam/entries'),
+            container=api.content.get(
+                path=self.location.encode('ascii', 'ignore')
+            ),
             type=self.content_type,
-            # title=fields['topic'],
-            # text=fields['comments']
             **mappings
         )
 
