@@ -45,7 +45,8 @@ class TestUninstall(unittest.TestCase):
             self.installer = api.portal.get_tool('portal_quickinstaller')
         roles_before = api.user.get_roles(TEST_USER_ID)
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.installer.uninstallProducts(['collective.easyformplugin.createdx'])
+        self.installer.uninstallProducts(
+            ['collective.easyformplugin.createdx'])
         setRoles(self.portal, TEST_USER_ID, roles_before)
 
     def test_product_uninstalled(self):

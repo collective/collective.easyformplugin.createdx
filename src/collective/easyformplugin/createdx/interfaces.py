@@ -20,7 +20,6 @@ class ICreateDX(IAction):
         required=True,
     )
 
-
     content_type = schema.Choice(
         title=_(u'label_content_type', default=u'Content Type'),
         vocabulary='plone.app.vocabularies.PortalTypes',
@@ -30,10 +29,10 @@ class ICreateDX(IAction):
     )
     directives.widget('content_type', SelectFieldWidget)
 
-
     mappings = schema.List(
         title=_(u'Form field to item field mappings'),
-        description=_(u'One mapping per line. Format: "formfieldid itemfieldid:fieldtype"'),
+        description=_(
+            u'One mapping per line. Format: "formfieldid itemfieldid:fieldtype"'),
         default=[],
         required=False,
         value_type=schema.TextLine(),

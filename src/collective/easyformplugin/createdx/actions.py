@@ -30,11 +30,10 @@ def datetime_handler(value):
 
 
 CONVERT_MAP = {
-#     'richtext': richtext_handler,
-#     'textline': textline_handler,
+    #     'richtext': richtext_handler,
+    #     'textline': textline_handler,
     'datetime': datetime_handler,
 }
-
 
 
 @implementer(ICreateDX)
@@ -49,9 +48,8 @@ class CreateDX(Action):
     def convert_field(self, field_type, value):
         converter = CONVERT_MAP.get(field_type, None)
         if converter is None:
-                return value
+            return value
         return converter(value)
-
 
     def createDXItem(self, fields, request, context):
         """Create dexterity item and call converters as necessary
@@ -74,7 +72,6 @@ class CreateDX(Action):
             # text=fields['comments']
             **mappings
         )
-
 
     def onSuccess(self, fields, request):
         """Create item on successful form submission
