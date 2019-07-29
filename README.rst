@@ -11,44 +11,26 @@ Create dexterity objects from easyform submissions
 Features
 --------
 
-- Can be bullet points
-
-
-Examples
---------
-
-This add-on can be seen in action at the following sites:
-- Is there a page on the internet where everybody can see the features?
+- Easyform action to create dexterity items
+- Converters to meet the target fields requirements for example a data_handler to add timezone info to be able to create events.
 
 
 Documentation
 -------------
 
-Full documentation for end users can be found in the "docs" folder, and is also available online at http://docs.plone.org/foo/bar
+- Install the addon within your Plone site
+- From the actions menu choose edit actions and add a new action "Create dexterity content"
+- Choose a location where the items should be create
+- Choose the desired content_type
+- Map your form field ids to the item field ids and add the converter configuration if needed
 
-
-Translations
-------------
-
-This product has been translated into
-
-- Klingon (thanks, K'Plai)
-
-
-Installation
-------------
-
-Install collective.easyformplugin.createdx by adding it to your buildout::
-
-    [buildout]
-
-    ...
-
-    eggs =
-        collective.easyformplugin.createdx
-
-
-and then running ``bin/buildout``
+Mapping example
+---------------
+```
+topic title
+comments text:richtext
+event_start start:datetime
+```
 
 
 Contribute
@@ -62,8 +44,7 @@ Contribute
 Support
 -------
 
-If you are having issues, please let us know.
-We have a mailing list located at: project@example.com
+If you are having issues, please let us know on the issue tracker.
 
 
 License
