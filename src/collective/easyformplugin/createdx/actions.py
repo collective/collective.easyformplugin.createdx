@@ -17,7 +17,7 @@ def intellitext_converter(value):
     """
     portal_transforms = api.portal.get_tool(name='portal_transforms')
     stream = portal_transforms.convertTo(
-        'text/html', value, mimetype='text/x-web-intelligent'
+        'text/html', value, mimetype='text/x-web-intelligent',
     )
     return stream.getData().strip()
 
@@ -66,7 +66,7 @@ class CreateDX(Action):
             )
 
         location = api.content.get(
-            path=self.location.encode('ascii', 'ignore')
+            path=self.location.encode('ascii', 'ignore'),
         )
 
         if 'id' in mappings and mappings['id']:
@@ -81,7 +81,7 @@ class CreateDX(Action):
             container=location,
             type=self.content_type,
             id=item_id,
-            **mappings
+            **mappings  # noqa C815
         )
 
     def onSuccess(self, fields, request):
@@ -91,7 +91,7 @@ class CreateDX(Action):
         current_user = api.user.get_current()
 
         with api.env.adopt_user(user=current_user):
-            with api.env.adopt_roles(roles=["Contributor"]):
+            with api.env.adopt_roles(roles=['Contributor']):
                 self.createDXItem(fields, request, context)
 
 

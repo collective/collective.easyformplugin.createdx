@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
 from collective.easyform.interfaces import IAction
-from z3c.relationfield.schema import RelationChoice
 from collective.easyformplugin.createdx import _
-from plone.app.z3cform.widget import RelatedItemsFieldWidget
-from plone.autoform import directives
 from plone import schema
 from plone.app.z3cform.widget import SelectFieldWidget
-from zope.interface import Interface
+from plone.autoform import directives
 from z3c.form.browser.textlines import TextLinesFieldWidget
 
 
@@ -32,8 +29,8 @@ class ICreateDX(IAction):
     mappings = schema.List(
         title=_(u'Form field to item field mappings'),
         description=_(
-            u'''One mapping per line. Format: "formfieldid itemfieldid:fieldtype". 
-            Make sure you have at least the title mapping defined, because it will also be used to create the id of the item!'''),
+            u"""One mapping per line. Format: "formfieldid itemfieldid:fieldtype".
+            Make sure you have at least the title mapping defined, because it will also be used to create the id of the item!"""),
         default=[],
         required=True,
         value_type=schema.TextLine(),
