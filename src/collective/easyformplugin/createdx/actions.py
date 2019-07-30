@@ -6,6 +6,7 @@ from collective.easyformplugin.createdx import _
 from collective.easyformplugin.createdx.interfaces import ICreateDX
 from plone import api
 from plone.supermodel.exportimport import BaseHandler
+from zope.container.interfaces import INameChooser
 from zope.interface import implementer
 
 import pytz
@@ -64,11 +65,22 @@ class CreateDX(Action):
                 fields[src_field],
             )
 
+        location = api.content.get(
+            path=self.location.encode('ascii', 'ignore')
+        )
+
+        if 'id' in mappings and mappings['id']:
+            title_or_id = mappings['id']
+        else:
+            title_or_id = mappings['title']
+
+        chooser = INameChooser(location)
+        item_id = chooser.chooseName(title_or_id, location)
+
         api.content.create(
-            container=api.content.get(
-                path=self.location.encode('ascii', 'ignore')
-            ),
+            container=location,
             type=self.content_type,
+            id=item_id,
             **mappings
         )
 
@@ -76,7 +88,11 @@ class CreateDX(Action):
         """Create item on successful form submission
         """
         context = get_context(self)
-        self.createDXItem(fields, request, context)
+        current_user = api.user.get_current()
+
+        with api.env.adopt_user(user=current_user):
+            with api.env.adopt_roles(roles=["Contributor"]):
+                self.createDXItem(fields, request, context)
 
 
 CreateDXAction = ActionFactory(

@@ -32,9 +32,10 @@ class ICreateDX(IAction):
     mappings = schema.List(
         title=_(u'Form field to item field mappings'),
         description=_(
-            u'One mapping per line. Format: "formfieldid itemfieldid:fieldtype"'),
+            u'''One mapping per line. Format: "formfieldid itemfieldid:fieldtype. 
+            Make sure you have at least the title mapping defined, because it will also be used to create the id of the item!"'''),
         default=[],
-        required=False,
+        required=True,
         value_type=schema.TextLine(),
     )
 
