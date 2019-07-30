@@ -31,10 +31,9 @@ Available converters
 
 
 
-Mapping example
+Mapping example::
 ---------------
 
-::
     topic title
     comments text:richtext
     event_start start:datetime
