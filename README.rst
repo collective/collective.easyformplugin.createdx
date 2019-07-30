@@ -34,6 +34,9 @@ Available converters
 Mapping 
 -------
 
+Field mapping format: "formFieldId itemFieldId:fieldtype"
+Make sure you have at least the title mapping defined, because it will also be used to create the id of the item!
+
 Example::
 
     topic title
