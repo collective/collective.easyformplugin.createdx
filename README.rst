@@ -37,8 +37,8 @@ Mapping
 Example::
 
     topic title
-    comments text:richtext
-    event_start start:datetime
+    comments text:plaintext_to_intellitext
+    event_start start:datetime_with_timezone
 
 
 Contribute
