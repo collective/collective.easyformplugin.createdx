@@ -5,6 +5,7 @@ from collective.easyform.api import get_context
 from collective.easyformplugin.createdx import _
 from collective.easyformplugin.createdx.interfaces import ICreateDX
 from plone import api
+from plone.app.textfield.value import RichTextValue
 from plone.supermodel.exportimport import BaseHandler
 from zope.container.interfaces import INameChooser
 from zope.interface import implementer
@@ -19,7 +20,12 @@ def intellitext_converter(value):
     stream = portal_transforms.convertTo(
         'text/html', value, mimetype='text/x-web-intelligent',
     )
-    return stream.getData().strip()
+    return RichTextValue(
+        raw=stream.getData().strip(),
+        mimeType='text/html',
+        outputMimeType='text/x-html-safe',
+        encoding='utf-8',
+    )
 
 
 def add_timezone_converter(value):
