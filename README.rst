@@ -26,8 +26,8 @@ Documentation
 Available converters
 --------------------
 
-- 'plaintext_to_intellitext': converts plain text to html,
-- 'datetime_with_timezone': adds portal default timezone to datetime,
+- plaintext_to_intellitext: converts plain text to html,
+- datetime_with_timezone: adds portal default timezone to datetime,
 
 
 
