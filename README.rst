@@ -31,8 +31,10 @@ Available converters
 
 
 
-Mapping example::
----------------
+Mapping 
+-------
+
+Example::
 
     topic title
     comments text:richtext
