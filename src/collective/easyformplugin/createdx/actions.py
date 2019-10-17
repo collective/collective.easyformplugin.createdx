@@ -70,10 +70,7 @@ class CreateDX(Action):
                 field_type,
                 fields[src_field],
             )
-
-        location = api.content.get(
-            path=self.location.encode('ascii', 'ignore'),
-        )
+        location = api.content.get(path=self.location)
 
         if 'id' in mappings and mappings['id']:
             title_or_id = mappings['id']
