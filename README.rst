@@ -44,6 +44,11 @@ Example::
     event_start start:datetime_with_timezone
 
 
+Note
+----
+
+There have been zodb transaction issues, turn off versioning for easyform as a workaround.
+
 Contribute
 ----------
 
