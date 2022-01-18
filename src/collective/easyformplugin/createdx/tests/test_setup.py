@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """Setup tests for this package."""
-from collective.easyformplugin.createdx.testing import COLLECTIVE_EASYFORMPLUGIN_CREATEDX_INTEGRATION_TESTING  # noqa: E501
+from collective.easyformplugin.createdx.testing import (  # noqa: E501
+    COLLECTIVE_EASYFORMPLUGIN_CREATEDX_INTEGRATION_TESTING,
+)
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
@@ -21,16 +23,17 @@ class TestSetup(unittest.TestCase):
 
     def setUp(self):
         """Custom shared utility setup for tests."""
-        self.portal = self.layer['portal']
+        self.portal = self.layer["portal"]
         if get_installer:
-            self.installer = get_installer(self.portal, self.layer['request'])
+            self.installer = get_installer(self.portal, self.layer["request"])
         else:
-            self.installer = api.portal.get_tool('portal_quickinstaller')
+            self.installer = api.portal.get_tool("portal_quickinstaller")
 
     def test_product_installed(self):
         """Test if collective.easyformplugin.createdx is installed."""
-        self.assertTrue(self.installer.isProductInstalled(
-            'collective.easyformplugin.createdx'))
+        self.assertTrue(
+            self.installer.isProductInstalled("collective.easyformplugin.createdx")
+        )
 
 
 class TestUninstall(unittest.TestCase):
@@ -38,18 +41,18 @@ class TestUninstall(unittest.TestCase):
     layer = COLLECTIVE_EASYFORMPLUGIN_CREATEDX_INTEGRATION_TESTING
 
     def setUp(self):
-        self.portal = self.layer['portal']
+        self.portal = self.layer["portal"]
         if get_installer:
-            self.installer = get_installer(self.portal, self.layer['request'])
+            self.installer = get_installer(self.portal, self.layer["request"])
         else:
-            self.installer = api.portal.get_tool('portal_quickinstaller')
+            self.installer = api.portal.get_tool("portal_quickinstaller")
         roles_before = api.user.get_roles(TEST_USER_ID)
-        setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.installer.uninstallProducts(
-            ['collective.easyformplugin.createdx'])
+        setRoles(self.portal, TEST_USER_ID, ["Manager"])
+        self.installer.uninstallProducts(["collective.easyformplugin.createdx"])
         setRoles(self.portal, TEST_USER_ID, roles_before)
 
     def test_product_uninstalled(self):
         """Test if collective.easyformplugin.createdx is cleanly uninstalled."""
-        self.assertFalse(self.installer.isProductInstalled(
-            'collective.easyformplugin.createdx'))
+        self.assertFalse(
+            self.installer.isProductInstalled("collective.easyformplugin.createdx")
+        )

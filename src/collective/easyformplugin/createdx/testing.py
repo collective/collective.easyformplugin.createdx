@@ -19,11 +19,12 @@ class CollectiveEasyformpluginCreatedxLayer(PloneSandboxLayer):
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
         import plone.restapi
+
         self.loadZCML(package=plone.restapi)
         self.loadZCML(package=collective.easyformplugin.createdx)
 
     def setUpPloneSite(self, portal):
-        applyProfile(portal, 'collective.easyformplugin.createdx:default')
+        applyProfile(portal, "collective.easyformplugin.createdx:default")
 
 
 COLLECTIVE_EASYFORMPLUGIN_CREATEDX_FIXTURE = CollectiveEasyformpluginCreatedxLayer()
@@ -31,13 +32,13 @@ COLLECTIVE_EASYFORMPLUGIN_CREATEDX_FIXTURE = CollectiveEasyformpluginCreatedxLay
 
 COLLECTIVE_EASYFORMPLUGIN_CREATEDX_INTEGRATION_TESTING = IntegrationTesting(
     bases=(COLLECTIVE_EASYFORMPLUGIN_CREATEDX_FIXTURE,),
-    name='CollectiveEasyformpluginCreatedxLayer:IntegrationTesting',
+    name="CollectiveEasyformpluginCreatedxLayer:IntegrationTesting",
 )
 
 
 COLLECTIVE_EASYFORMPLUGIN_CREATEDX_FUNCTIONAL_TESTING = FunctionalTesting(
     bases=(COLLECTIVE_EASYFORMPLUGIN_CREATEDX_FIXTURE,),
-    name='CollectiveEasyformpluginCreatedxLayer:FunctionalTesting',
+    name="CollectiveEasyformpluginCreatedxLayer:FunctionalTesting",
 )
 
 
@@ -47,5 +48,5 @@ COLLECTIVE_EASYFORMPLUGIN_CREATEDX_ACCEPTANCE_TESTING = FunctionalTesting(
         REMOTE_LIBRARY_BUNDLE_FIXTURE,
         z2.ZSERVER_FIXTURE,
     ),
-    name='CollectiveEasyformpluginCreatedxLayer:AcceptanceTesting',
+    name="CollectiveEasyformpluginCreatedxLayer:AcceptanceTesting",
 )
