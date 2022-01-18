@@ -40,9 +40,10 @@ Available converters
 Mapping
 -------
 
-Field mapping format: ``formFieldId itemFieldId:fieldtype``.
-``fieldType`` is optional.
-Make sure you have at least eiter the title or id mapping defined, because it will also be used to create the id of the item!
+Field mapping format: ``formFieldId itemFieldId:converter``.
+The ``converter`` is optional, value is taken as is.
+Latter implies fields are matching in easyform and target schema!
+Make sure you have at least eiter the ``title`` or ``id`` mapping defined, because it will also be used to create the id of the item!
 
 Example::
 
