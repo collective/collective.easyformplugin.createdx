@@ -28,10 +28,11 @@ Available converters
 
 - plaintext_to_intellitext: converts plain text to html,
 - datetime_with_timezone: adds portal default timezone to datetime,
+- file_converter: takes a fileupload and converts it to a named blob file,
 
 
 
-Mapping 
+Mapping
 -------
 
 Field mapping format: "formFieldId itemFieldId:fieldtype"
@@ -42,6 +43,7 @@ Example::
     topic title
     comments text:plaintext_to_intellitext
     event_start start:datetime_with_timezone
+    video_upload file:fileupload_converter
 
 
 Note

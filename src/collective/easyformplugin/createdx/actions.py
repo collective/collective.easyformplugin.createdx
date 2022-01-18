@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from site import execsitecustomize
 from collective.easyform.actions import Action
 from collective.easyform.actions import ActionFactory
 from collective.easyform.api import get_context
@@ -9,8 +10,13 @@ from plone.app.textfield.value import RichTextValue
 from plone.supermodel.exportimport import BaseHandler
 from zope.container.interfaces import INameChooser
 from zope.interface import implementer
+from plone.namedfile.file import NamedBlobFile
 
+import logging
 import pytz
+
+
+logger = logging.getLogger(__name__)
 
 
 def intellitext_converter(value):
@@ -35,10 +41,15 @@ def add_timezone_converter(value):
     tz = pytz.timezone(portal_timezone)
     return tz.localize(value)
 
+def fileupload_to_namedblobfile_converter(value):
+    breakpoint()
+    return NamedBlobFile(value.data, filename=value.filename)
+
 
 CONVERT_MAP = {
     "plaintext_to_intellitext": intellitext_converter,
     "datetime_with_timezone": add_timezone_converter,
+    "fileupload_converter": fileupload_to_namedblobfile_converter,
 }
 
 
@@ -60,21 +71,33 @@ class CreateDX(Action):
     def createDXItem(self, fields, request, context):
         """Create dexterity item and call converters as necessary"""
         mappings = {}
-        for m in self.mappings:
-            src_field, v = m.split(" ")
-            if ":" not in v:
-                v += ":"
-            target_field, field_type = v.split(":")
+        for mapping in self.mappings:
+            try:
+                src_field, target_def = mapping.split(" ")
+            except ValueError:
+                logger.exception(f"Configuration of mapping wrong: {mapping} (ignored)")
+                continue
+            if src_field not in fields:
+                logger.error(f"Undefined field {src_field} configured!")
+                continue
+            if ":" not in target_def:
+                target_def += ":"
+            target_field, field_type = target_def.split(":")
             mappings[target_field] = self.convert_field(
                 field_type,
                 fields[src_field],
             )
-        location = api.content.get(path=self.location)
 
         if "id" in mappings and mappings["id"]:
             title_or_id = mappings["id"]
-        else:
+        elif "title" in mappings and mappings["title"]:
             title_or_id = mappings["title"]
+        else:
+            raise ValueError("Neither id nor title mapped.")
+
+        location = api.content.get(path=self.location)
+        if not location:
+            raise ValueError(f"Target location can not be found: {self.location}")
 
         chooser = INameChooser(location)
         item_id = chooser.chooseName(title_or_id, location)
