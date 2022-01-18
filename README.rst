@@ -2,12 +2,12 @@
 collective.easyformplugin.createdx
 ==================================
 
-Create dexterity objects from easyform submissions
+Creates Plone content objects from EasyForm submissions.
 
 Features
 --------
 
-`Easyform <https://pypi.org/project/collective.easyform/>`_ action to create dexterity items.
+`Easyform <https://pypi.org/project/collective.easyform/>`_ action to create Plone/Dexterity content items.
 
 Converters to meet the target fields requirements for example a data_handler to add timezone info to be able to create events.
 
@@ -42,7 +42,7 @@ Mapping
 
 Field mapping format: ``formFieldId itemFieldId:converter``.
 The ``converter`` is optional, value is taken as is.
-Latter implies fields are matching in easyform and target schema!
+Latter implies value types are matching in EasyForm (form field) and target schema (item feld)!
 Make sure you have at least eiter the ``title`` or ``id`` mapping defined, because it will also be used to create the id of the item!
 
 Example::
