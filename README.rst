@@ -7,9 +7,9 @@ Create dexterity objects from easyform submissions
 Features
 --------
 
-- Easyform action to create dexterity items
-- Converters to meet the target fields requirements for example a data_handler
-  to add timezone info to be able to create events.
+`Easyform <https://pypi.org/project/collective.easyform/>`_ action to create dexterity items.
+
+Converters to meet the target fields requirements for example a data_handler to add timezone info to be able to create events.
 
 
 Documentation
@@ -17,7 +17,7 @@ Documentation
 
 - Install the addon within your Plone site
 - From the actions menu choose edit actions and add a new action
-  "Create dexterity content"
+  ``Create dexterity content``
 - Choose a location where the items should be create
 - Choose the desired content type
 - Map your form field ids to the item field ids and add converters as needed
@@ -26,17 +26,23 @@ Documentation
 Available converters
 --------------------
 
-- plaintext_to_intellitext: converts plain text to html,
-- datetime_with_timezone: adds portal default timezone to datetime,
-- file_converter: takes a fileupload and converts it to a named blob file,
+``plaintext_to_intellitext``
+  converts plain text to html
+
+``datetime_with_timezone``
+  adds portal default timezone to datetime
+
+``file_converter``
+  takes a fileupload and converts it to a named blob file,
 
 
 
 Mapping
 -------
 
-Field mapping format: "formFieldId itemFieldId:fieldtype"
-Make sure you have at least the title mapping defined, because it will also be used to create the id of the item!
+Field mapping format: ``formFieldId itemFieldId:fieldtype``.
+``fieldType`` is optional.
+Make sure you have at least eiter the title or id mapping defined, because it will also be used to create the id of the item!
 
 Example::
 
@@ -49,7 +55,7 @@ Example::
 Note
 ----
 
-There have been zodb transaction issues, turn off versioning for easyform as a workaround.
+There have been ZODB transaction issues, turn off versioning for easyform as a workaround.
 
 Contribute
 ----------
